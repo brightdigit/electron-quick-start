@@ -6,7 +6,6 @@ var gulp = require('gulp'),
   source = require('vinyl-source-stream'),
   buffer = require('vinyl-buffer');
 
-  var BUILD_DIR = 'build/';
     // function compile() {
     //   var bundler = browserify('app/index.js', {
     //     debug: true
@@ -39,22 +38,28 @@ var gulp = require('gulp'),
         .bundle()
         .pipe(source('index.js'))
         .pipe(buffer())
-        .pipe(gulp.dest(BUILD_DIR));
+        .pipe(gulp.dest("build/js"));
     }
 
     gulp.task('build:js', function() {
   return compile();
-})
+});
 
-gulp.task('electron:start', function () {
+gulp.task('build:html', function () {
+  return gulp.src(['src/**/*.html','src/**/*.css','src/**/*.png','src/**/*.ttf','src/**/*.woff2']).pipe(gulp.dest("build"));
+});
+
+gulp.task('build', gulp.parallel('build:html', 'build:js'));
+
+gulp.task('electron:start', gulp.series('build', function () {
 
   // Start browser process
   electron.start();
-});
+}));
 
-gulp.task('cordova:prep', function () {
-  return gulp.src('src/**').pipe(gulp.dest("www"));
-});
+gulp.task('cordova:prep', gulp.series('build',function () {
+  return gulp.src('build/**').pipe(gulp.dest("www"));
+}))
 
 gulp.task('cordova:build', gulp.series('cordova:prep', function(cb) {
     //process.chdir(__dirname + '/cordova');
