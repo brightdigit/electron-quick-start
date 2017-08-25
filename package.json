@@ -4,7 +4,7 @@
     "description": "A universal application.",
     "main": "main.js",
     "scripts": {
-        "desktop": "electron .",
+        "desktop": "node_modules/gulp/bin/gulp.js electron",
         "ios": "node_modules/gulp/bin/gulp.js emulate"
     },
     "author": "Apache Cordova Team",
