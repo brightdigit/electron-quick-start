@@ -4,7 +4,8 @@ var gulp = require('gulp'),
     cordova = require('cordova-lib').cordova.raw,
     browserify = require('browserify'),
   source = require('vinyl-source-stream'),
-  buffer = require('vinyl-buffer');
+  buffer = require('vinyl-buffer'),
+ sass = require('gulp-sass');
 
     // function compile() {
     //   var bundler = browserify('app/index.js', {
@@ -45,11 +46,17 @@ var gulp = require('gulp'),
   return compile();
 });
 
-gulp.task('build:html', function () {
-  return gulp.src(['src/**/*.html','src/**/*.css','src/**/*.png','src/**/*.ttf','src/**/*.woff2']).pipe(gulp.dest("build"));
+gulp.task('build:css', function() {
+  return gulp.src('src/**/*.scss')
+        .pipe(sass())
+        .pipe(gulp.dest('build/css'));
 });
 
-gulp.task('build', gulp.parallel('build:html', 'build:js'));
+gulp.task('build:html', function () {
+  return gulp.src(['src/**/*.html','src/**/*.png','src/**/*.ttf','src/**/*.woff2']).pipe(gulp.dest("build"));
+});
+
+gulp.task('build', gulp.parallel('build:html', 'build:js', 'build:css'));
 
 gulp.task('electron:start', gulp.series('build', function () {
 
