@@ -47,8 +47,8 @@ var gulp = require('gulp'),
 });
 
 gulp.task('build:css', function() {
-  return gulp.src('src/**/*.scss')
-        .pipe(sass())
+  return gulp.src('src/sass/**/*.scss')
+        .pipe(sass({includePaths : ['node_modules'] }))
         .pipe(gulp.dest('build/css'));
 });
 
