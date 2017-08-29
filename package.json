@@ -1,40 +1,39 @@
 {
-    "name": "helloworld",
-    "version": "1.0.0",
-    "description": "A universal application.",
-    "main": "main.js",
-    "scripts": {
-        "desktop": "node_modules/gulp/bin/gulp.js electron:start",
-        "ios": "node_modules/gulp/bin/gulp.js cordova:start:ios"
+  "name": "helloworld",
+  "version": "1.0.0",
+  "description": "A universal application.",
+  "main": "main.js",
+  "scripts": {
+    "desktop": "node_modules/gulp/bin/gulp.js electron:start",
+    "ios": "node_modules/gulp/bin/gulp.js cordova:start:ios"
+  },
+  "author": "Apache Cordova Team",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "animate.css": "github:daneden/animate.css#sass",
+    "cordova-ios": "^4.4.0",
+    "cordova-plugin-whitelist": "^1.3.2",
+    "electron": "~1.6.2",
+    "getbase": "^3.5.1",
+    "gulp-cordova": "^6.0.1"
+  },
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-whitelist": {}
     },
-    "author": "Apache Cordova Team",
-    "license": "Apache-2.0",
-    "dependencies": {
-        "animate.css": "github:daneden/animate.css#sass",
-        "cordova-ios": "^4.4.0",
-        "cordova-plugin-whitelist": "^1.3.2",
-        "electron": "~1.6.2",
-        "getbase": "^3.5.1"
-    },
-    "cordova": {
-        "plugins": {
-            "cordova-plugin-whitelist": {}
-        },
-        "platforms": [
-            "ios"
-        ]
-    },
-    "devDependencies": {
-        "babel-preset-es2015": "^6.24.1",
-        "babel-preset-stage-0": "^6.24.1",
-        "babelify": "^7.3.0",
-        "browserify": "^14.4.0",
-        "cordova-lib": "^7.0.1",
-        "electron-connect": "^0.6.2",
-        "gulp": "github:gulpjs/gulp#4.0",
-        "gulp-sass": "^3.1.0",
-        "ios-sim": "^6.0.0",
-        "vinyl-buffer": "^1.0.0",
-        "vinyl-source-stream": "^1.1.0"
-    }
+    "platforms": []
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babelify": "^7.3.0",
+    "browserify": "^14.4.0",
+    "cordova-lib": "^7.0.1",
+    "electron-connect": "^0.6.2",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-sass": "^3.1.0",
+    "ios-sim": "^6.0.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  }
 }

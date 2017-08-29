@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
   iosSim = require('ios-sim'),
  electron = require('electron-connect').server.create(),
-    cordova = require('cordova-lib').cordova.raw,
+    cordova = require('gulp-cordova'),
     browserify = require('browserify'),
   source = require('vinyl-source-stream'),
   buffer = require('vinyl-buffer'),
@@ -68,14 +68,15 @@ gulp.task('cordova:prep', gulp.series('build',function () {
   return gulp.src('build/**').pipe(gulp.dest("www"));
 }))
 
-gulp.task('cordova:build', gulp.series('cordova:prep', function(cb) {
+gulp.task('cordova:platform:ios', function () {
+  return gulp.src('./package.json')
+    .pipe(cordova(['platform', 'add', 'ios']));
+});
+
+gulp.task('cordova:build', gulp.series('cordova:prep', 'cordova:platform:ios', function() {
     //process.chdir(__dirname + '/cordova');
-    cordova
-        .build()
-        .then(function() {
-      ///      process.chdir('../');
-            cb();
-        });
+    return gulp.src('./package.json')
+      .pipe(cordova(['build']))
 }));
 
 gulp.task('cordova:start:ios', gulp.series('cordova:build' , function() {
