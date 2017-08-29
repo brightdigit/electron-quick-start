@@ -1,4 +1,4 @@
-@import 'getbase/scss/styles';
+@import "getbase/scss/base";
 
 /* latin */
 @font-face {
@@ -21,3 +21,5 @@
 html, body {
   font-family: 'Heebo', sans-serif;
 }
+
+@import "getbase/scss/base/_helpers";
