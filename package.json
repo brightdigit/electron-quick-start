@@ -5,7 +5,9 @@
   "main": "main.js",
   "scripts": {
     "desktop": "node_modules/gulp/bin/gulp.js electron:start",
-    "ios": "node_modules/gulp/bin/gulp.js cordova:start:ios"
+    "ios": "node_modules/gulp/bin/gulp.js cordova:start:ios",
+    "build": "node_modules/gulp/bin/gulp.js build",
+    "browser": "node_modules/gulp/bin/gulp.js webserver"
   },
   "author": "Apache Cordova Team",
   "license": "Apache-2.0",
@@ -32,6 +34,7 @@
     "electron-connect": "^0.6.2",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-sass": "^3.1.0",
+    "gulp-webserver": "^0.9.1",
     "ios-sim": "^6.0.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"

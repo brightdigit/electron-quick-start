@@ -20,6 +20,21 @@
 
 html, body {
   font-family: 'Heebo', sans-serif;
+  height: 100%;
 }
+
+.full-page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  resize: vertical;
+  overflow: auto;
+  & > .container-full {
+    resize: vertical ;
+
+  }
+}
+
 
 @import "getbase/scss/base/_helpers";

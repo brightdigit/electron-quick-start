@@ -5,7 +5,8 @@ var gulp = require('gulp'),
     browserify = require('browserify'),
   source = require('vinyl-source-stream'),
   buffer = require('vinyl-buffer'),
- sass = require('gulp-sass');
+ sass = require('gulp-sass'),
+ webserver = require('gulp-webserver');
 
     // function compile() {
     //   var bundler = browserify('app/index.js', {
@@ -56,7 +57,17 @@ gulp.task('build:html', function () {
   return gulp.src(['src/**/*.html','src/**/*.png','src/**/*.ttf','src/**/*.woff2']).pipe(gulp.dest("build"));
 });
 
+
 gulp.task('build', gulp.parallel('build:html', 'build:js', 'build:css'));
+
+gulp.task('webserver', gulp.series('build', function () {
+  gulp.src('build')
+    .pipe(webserver({
+      livereload: true,
+      directoryListing: false,
+      open: true
+    }));
+}));
 
 gulp.task('electron:start', gulp.series('build', function () {
 
