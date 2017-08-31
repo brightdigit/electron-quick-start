@@ -81,7 +81,7 @@ gulp.task('cordova:prep', gulp.series('build',function () {
 
 gulp.task('cordova:platform:ios', function () {
   return gulp.src('./package.json')
-    .pipe(cordova(['platform', 'add', 'ios']));
+    .pipe(cordova(['prepare']));
 });
 
 gulp.task('cordova:build', gulp.series('cordova:prep', 'cordova:platform:ios', function() {

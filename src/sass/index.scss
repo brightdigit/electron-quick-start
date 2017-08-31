@@ -35,7 +35,9 @@ html, body, button, input, textarea {
   overflow: auto;
   & > .container-full {
     resize: vertical ;
-
+    h1 {
+      margin: 0;
+    }
   }
 }
 
@@ -47,5 +49,6 @@ background-color: transparent ;
 border: solid 1px;
 font-weight: bold;
 }
+
 
 @import "getbase/scss/base/_helpers";
