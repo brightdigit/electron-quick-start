@@ -1,4 +1,4 @@
-var gulp = require("gulp"),
+const gulp = require("gulp"),
   iosSim = require("ios-sim"),
   electron = require("electron-connect").server.create(),
   cordova = require("gulp-cordova"),
@@ -6,9 +6,11 @@ var gulp = require("gulp"),
   source = require("vinyl-source-stream"),
   buffer = require("vinyl-buffer"),
   sass = require("gulp-sass"),
-  webserver = require("gulp-webserver");
-const eslint = require("gulp-eslint");
-const gulpIf = require("gulp-if");
+  webserver = require("gulp-webserver"),
+  htmlclean = require("gulp-htmlclean"),
+  htmltidy = require("gulp-htmltidy"),
+  eslint = require("gulp-eslint"),
+  gulpIf = require("gulp-if");
 
 function isFixed(file) {
   // Has ESLint fixed the file contents?
@@ -49,8 +51,12 @@ function compile() {
     .pipe(gulp.dest("build/js"));
 }
 
-gulp.task("build:js", function() {
-  return compile();
+
+gulp.task("beautify:html", function () {
+  return gulp.src(["src/**/*.html"])
+    .pipe(htmlclean())
+    .pipe(htmltidy({indent : true}))
+    .pipe(gulp.dest("src"));
 });
 
 gulp.task("js:lint", () => {
@@ -72,15 +78,20 @@ gulp.task("js:lint", () => {
     .pipe(gulpIf(isFixed, gulp.dest(".")));
 });
 
+
+gulp.task("build:js", gulp.series("js:lint", function() {
+  return compile();
+}));
+
 gulp.task("build:css", function() {
   return gulp.src("src/sass/**/*.scss")
     .pipe(sass({includePaths : ["node_modules"] }))
     .pipe(gulp.dest("build/css"));
 });
 
-gulp.task("build:html", function () {
+gulp.task("build:html", gulp.series("beautify:html", function () {
   return gulp.src(["src/**/*.html","src/**/*.png","src/**/*.ttf","src/**/*.woff2"]).pipe(gulp.dest("build"));
-});
+}));
 
 
 gulp.task("build", gulp.parallel("build:html", "build:js", "build:css"));
