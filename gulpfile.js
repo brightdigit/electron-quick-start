@@ -10,8 +10,15 @@ const gulp = require("gulp"),
   htmlclean = require("gulp-htmlclean"),
   htmltidy = require("gulp-htmltidy"),
   eslint = require("gulp-eslint"),
-  gulpIf = require("gulp-if");
+  gulpIf = require("gulp-if"),
+  sassLint = require("gulp-sass-lint");
 
+gulp.task("sass:lint", function () {
+  return gulp.src("src/sass/**/*.scss")
+    .pipe(sassLint())
+    .pipe(sassLint.format())
+    .pipe(sassLint.failOnError());
+});
 function isFixed(file) {
   // Has ESLint fixed the file contents?
   return file.eslint != null && file.eslint.fixed;
@@ -83,11 +90,11 @@ gulp.task("build:js", gulp.series("js:lint", function() {
   return compile();
 }));
 
-gulp.task("build:css", function() {
+gulp.task("build:css", gulp.series("sass:lint", function() {
   return gulp.src("src/sass/**/*.scss")
     .pipe(sass({includePaths : ["node_modules"] }))
     .pipe(gulp.dest("build/css"));
-});
+}));
 
 gulp.task("build:html", gulp.series("beautify:html", function () {
   return gulp.src(["src/**/*.html","src/**/*.png","src/**/*.ttf","src/**/*.woff2"]).pipe(gulp.dest("build"));
