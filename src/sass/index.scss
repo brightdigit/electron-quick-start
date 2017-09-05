@@ -48,6 +48,10 @@ margin: 0.5em;
 background-color: transparent ;
 border: solid 1px;
 font-weight: bold;
+  &:hover {
+    color: #FFF;
+    background-color: #000;
+  }
 }
 
 
