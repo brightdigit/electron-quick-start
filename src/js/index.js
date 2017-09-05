@@ -46,12 +46,26 @@ var app = {
 app.initialize();
 
 var Vue = require("vue");
+var VueRouter = require("vue-router");
+
+Vue.use(VueRouter);
 
 var App = require("./app.vue");
 
-new Vue({
-  el: "#app",
+const router = new VueRouter({
+  routes // short for `routes: routes`
+});
+
+const routes = [
+  { path: "/", component: require("./app.vue") },
+  { path: "/signup", component: require("./signup.vue") },
+  { path: "/login", component: require("./login.vue") }
+];
+
+
+const ap = new Vue({
+  router,
   render: function (createElement) {
     return createElement(App);
   }
-});
+}).$mount("#app");

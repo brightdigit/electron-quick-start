@@ -61,8 +61,8 @@ function compile() {
 
 gulp.task("beautify:html", function () {
   return gulp.src(["src/**/*.html"])
-    .pipe(htmlclean())
-    .pipe(htmltidy({indent : true}))
+    //.pipe(htmlclean())
+  //  .pipe(htmltidy({indent : true}))
     .pipe(gulp.dest("src"));
 });
 

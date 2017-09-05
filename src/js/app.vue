@@ -10,7 +10,7 @@
     <div class="row clear">
       <div class=
       "col-12 col-lg-6 push-lg-3 flex-center text-center">
-        <button>Signup</button> <button>Login</button>
+        <router-link tag="button" to="/signup">Signup</router-link> <router-link tag="button" to="/login">Login</router-link>
       </div>
     </div>
   </div>
