@@ -53,7 +53,7 @@ Vue.use(VueRouter);
 var App = require("./app.vue");
 
 const routes = [
-  { path: "/", component: require("./app.vue") },
+  { path: "/", component: require("./home.vue") },
   { path: "/signup", component: require("./signup.vue") },
   { path: "/login", component: require("./login.vue") }
 ];
