@@ -54,5 +54,9 @@ font-weight: bold;
   }
 }
 
+input {
+height: initial !important;
+margin: 0.5em auto;
+}
 
 @import "getbase/scss/base/_helpers";
