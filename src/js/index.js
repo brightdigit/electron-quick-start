@@ -52,16 +52,15 @@ Vue.use(VueRouter);
 
 var App = require("./app.vue");
 
-const router = new VueRouter({
-  routes // short for `routes: routes`
-});
-
 const routes = [
   { path: "/", component: require("./app.vue") },
   { path: "/signup", component: require("./signup.vue") },
   { path: "/login", component: require("./login.vue") }
 ];
 
+const router = new VueRouter({
+  routes // short for `routes: routes`
+});
 
 const ap = new Vue({
   router,

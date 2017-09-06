@@ -1,1 +1,1 @@
-<router-view><div>Signup</div></router-view>
+<template><div>Signup</div></template>
