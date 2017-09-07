@@ -8,13 +8,13 @@
       </div>
     </div>
     <div class="row clear">
-      <div class="col-12 col-lg-8 push-lg-2 flex-center text-center">
+      <div class="col-12 col-lg-12 flex-center text-center">
       <form id="signup">
       <input placeholder="User Name" type="text" v-model="name"><br>
       <input placeholder="Email Address" type="email" v-model="email"><br>
       <input placeholder="Password" type="password" v-model="password"><br>
       <input placeholder="Confirm Password" type="password" v-model="confirm_password"><br>
-      <button :disabled="isButtonDisabled">Signup</button>
+      <button :disabled="isInvalid">Signup</button>
       </form>
 
       </div>
@@ -25,11 +25,18 @@
 <script>
 module.exports = {
   data : function () {
-  return {
-    isButtonDisabled : function () {
-      return true
-    }
+    return {
+        name : "",
+        email : "",
+        password: "",
+        confirm_password: ""
+
     };
+  },
+  computed : {
+    isInvalid : function () {
+      return !(this.name.length > 0 && this.email.length > 0 && this.password == this.confirm_password && this.password.length > 0);
+    }
   }
 };
 </script>
